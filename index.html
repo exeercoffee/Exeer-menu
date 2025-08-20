@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exeer Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 600%;
+    }
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .slide img {
+      width: 100%;
+      vertical-align: middle;
+      display: block;
+    }
+    .nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    .prev, .next {
+      cursor: pointer;
+      padding: 16px;
+      color: white;
+      font-size: 24px;
+      user-select: none;
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="slide_1.PNG" alt="Slide 1"></div>
+    <div class="slide"><img src="slide_2.PNG" alt="Slide 2"></div>
+    <div class="slide"><img src="slide_3.PNG" alt="Slide 3"></div>
+    <div class="slide"><img src="slide_4.PNG" alt="Slide 4"></div>
+    <div class="slide"><img src="slide_5.PNG" alt="Slide 5"></div>
+    <div class="slide"><img src="slide_6.PNG" alt="Slide 6"></div>
+  </div>
+  <div class="nav">
+    <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
+    <div class="next" onclick="moveSlide(1)">&#10095;</div>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+
+  function moveSlide(step) {
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    currentIndex = (currentIndex + step + totalSlides) % totalSlides;
+    slides.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+  }
+
+  // Optional: Auto-slide
+  setInterval(() => moveSlide(1), 7000);
+</script>
+
+</body>
+</html>
